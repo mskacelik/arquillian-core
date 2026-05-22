@@ -154,12 +154,12 @@ public class ArquillianExtension implements BeforeAllCallback, AfterAllCallback,
             } else {
                 // Run as container (but only once)
                 if (!contextStore.isRegisteredTemplate(invocationContext.getExecutable())) {
-                    result = interceptInvocation(invocation, extensionContext);
-                    contextStore.registerTemplateResult(invocationContext.getExecutable(), result);
+                    TestResult serverResult = interceptInvocation(invocation, extensionContext);
+                    contextStore.registerTemplateResultMapper(invocationContext.getExecutable(), serverResult);
                 } else {
                     invocation.skip();
-                    result = contextStore.getRegisteredTemplateResult(invocationContext.getExecutable());
                 }
+                result = contextStore.getTemplateResultMapper(invocationContext.getExecutable()).nextResult();
             }
             throwError(result);
         }

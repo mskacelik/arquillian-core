@@ -35,12 +35,13 @@ class ContextStore {
         return getTemplateStore().get(method.toGenericString()) != null;
     }
 
-    void registerTemplateResult(Method method, TestResult result) {
-        getTemplateStore().put(method.toGenericString(), result != null ? result : TestResult.passed());
+    void registerTemplateResultMapper(Method method, TestResult result) {
+        getTemplateStore().put(method.toGenericString(),
+            new TemplateResultMapper(result != null ? result : TestResult.passed()));
     }
 
-    TestResult getRegisteredTemplateResult(Method method) {
-        return getTemplateStore().get(method.toGenericString(), TestResult.class);
+    TemplateResultMapper getTemplateResultMapper(Method method) {
+        return getTemplateStore().get(method.toGenericString(), TemplateResultMapper.class);
     }
 
     /**
