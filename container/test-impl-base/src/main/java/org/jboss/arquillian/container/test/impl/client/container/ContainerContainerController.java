@@ -43,8 +43,8 @@ public class ContainerContainerController implements ContainerController {
     }
 
     @Override
-    public void start(String containerQualifier, Map<String, String> config) {
-        getCommandService().execute(new StartContainerCommand(containerQualifier, config));
+    public void start(String containerQualifier, Map<String, String> configurationOverride) {
+        getCommandService().execute(new StartContainerCommand(containerQualifier, configurationOverride));
     }
 
     @Override

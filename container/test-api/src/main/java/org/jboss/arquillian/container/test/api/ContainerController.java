@@ -56,13 +56,46 @@ import java.util.Map;
  * @author <a href="mailto:mgencur@redhat.com">Martin Gencur</a>
  */
 public interface ContainerController {
+
+    /**
+     * Starts the container with the given qualifier using its existing configuration.
+     *
+     * @param containerQualifier the qualifier of the container to start
+     */
     void start(String containerQualifier);
 
-    void start(String containerQualifier, Map<String, String> config);
+    /**
+     * Starts the container with the given qualifier, applying the provided configuration overrides
+     * on top of the existing container configuration (e.g. from {@code arquillian.xml}).
+     * <p>
+     * Note: this method re-fires the {@code SetupContainer} event so the container adapter picks up
+     * the overridden configuration. This means {@code setup()} is called twice for the container –
+     * once during suite setup with the original configuration, and again here with the merged configuration.
+     *
+     * @param containerQualifier the qualifier of the container to start
+     * @param configurationOverride configuration properties to override before starting the container
+     */
+    void start(String containerQualifier, Map<String, String> configurationOverride);
 
+    /**
+     * Stops the container with the given qualifier.
+     *
+     * @param containerQualifier the qualifier of the container to stop
+     */
     void stop(String containerQualifier);
 
+    /**
+     * Kills the container with the given qualifier.
+     *
+     * @param containerQualifier the qualifier of the container to kill
+     */
     void kill(String containerQualifier);
 
+    /**
+     * Returns whether the container with the given qualifier is started.
+     *
+     * @param containerQualifier the qualifier of the container to check
+     * @return {@code true} if the container is started, {@code false} otherwise
+     */
     boolean isStarted(String containerQualifier);
 }
