@@ -30,26 +30,23 @@ public class StartContainerCommand extends AbstractCommand<String> {
 
     private String containerQualifier;
 
-    private Map<String, String> configuration;
+    private Map<String, String> configurationOverride;
 
     public StartContainerCommand(String containerQualifier) {
         this.containerQualifier = containerQualifier;
-        this.configuration = null;
+        this.configurationOverride = null;
     }
 
-    public StartContainerCommand(String containerQualifier, Map<String, String> config) {
+    public StartContainerCommand(String containerQualifier, Map<String, String> configurationOverride) {
         this.containerQualifier = containerQualifier;
-        this.configuration = config;
+        this.configurationOverride = configurationOverride;
     }
 
-    /**
-     * @return the containerQualifier
-     */
     public String getContainerQualifier() {
         return containerQualifier;
     }
 
     public Map<String, String> getConfiguration() {
-        return configuration;
+        return configurationOverride;
     }
 }

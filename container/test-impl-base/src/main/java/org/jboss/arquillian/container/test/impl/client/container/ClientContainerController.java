@@ -101,7 +101,7 @@ public class ClientContainerController implements ContainerController {
     }
 
     @Override
-    public void start(String containerQualifier, Map<String, String> config) {
+    public void start(String containerQualifier, Map<String, String> configurationOverride) {
         DeploymentScenario scenario = deploymentScenario.get();
         if (scenario == null) {
             throw new IllegalArgumentException("No deployment scenario in context");
@@ -126,8 +126,8 @@ public class ClientContainerController implements ContainerController {
 
         Container container = registry.getContainer(new TargetDescription(containerQualifier));
 
-        for (String name : config.keySet()) {
-            container.getContainerConfiguration().overrideProperty(name, config.get(name));
+        for (String name : configurationOverride.keySet()) {
+            container.getContainerConfiguration().overrideProperty(name, configurationOverride.get(name));
         }
 
         log.info("Manual starting of a server instance with overridden configuration. New configuration: " +
