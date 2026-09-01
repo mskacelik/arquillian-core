@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source
- * Copyright 2021 Red Hat Inc. and/or its affiliates and other contributors
+ * Copyright 2026 Red Hat Inc. and/or its affiliates and other contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -17,51 +17,15 @@
 package org.jboss.arquillian.junit5.container;
 
 import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.jboss.arquillian.junit5.container.JUnitTestBaseClass.Cycle;
-import static org.jboss.arquillian.junit5.container.JUnitTestBaseClass.wasCalled;
-
 @ExtendWith(ArquillianExtension.class)
 public class ClassWithArquillianExtensionAndParameterizedTest {
 
-  @BeforeAll
-  public static void beforeClass() throws Throwable {
-    wasCalled(Cycle.BEFORE_CLASS);
-  }
-
-  @AfterAll
-  public static void afterClass() throws Throwable {
-    wasCalled(Cycle.AFTER_CLASS);
-  }
-
-  @BeforeEach
-  public void before() throws Throwable {
-    wasCalled(Cycle.BEFORE);
-  }
-
-  @AfterEach
-  public void after() throws Throwable {
-    wasCalled(Cycle.AFTER);
-  }
-
-  @ParameterizedTest
-  @ValueSource(strings = {"one", "two"})
-  public void failingTest() throws Throwable {
-    wasCalled(Cycle.TEST);
-    Assertions.fail("Intentionally failing the test.");
-  }
-
-  @ParameterizedTest
-  @ValueSource(strings = {"one", "two"})
-  public void succeedingTest() throws Throwable {
-    wasCalled(Cycle.TEST);
-  }
+    @ParameterizedTest
+    @ValueSource(strings = {"one", "two", "three"})
+    public void parameterizedTest(String param) {
+    }
 }

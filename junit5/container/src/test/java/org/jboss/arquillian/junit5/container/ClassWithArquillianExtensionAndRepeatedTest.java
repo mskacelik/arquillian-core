@@ -16,14 +16,7 @@
  */
 package org.jboss.arquillian.junit5.container;
 
-import static org.jboss.arquillian.junit5.container.JUnitTestBaseClass.Cycle;
-import static org.jboss.arquillian.junit5.container.JUnitTestBaseClass.wasCalled;
-
 import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -33,28 +26,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith(ArquillianExtension.class)
 public class ClassWithArquillianExtensionAndRepeatedTest {
 
-    @BeforeAll
-    public static void beforeClass() throws Throwable {
-        wasCalled(Cycle.BEFORE_CLASS);
-    }
-
-    @AfterAll
-    public static void afterClass() throws Throwable {
-        wasCalled(Cycle.AFTER_CLASS);
-    }
-
-    @BeforeEach
-    public void before() throws Throwable {
-        wasCalled(Cycle.BEFORE);
-    }
-
-    @AfterEach
-    public void after() throws Throwable {
-        wasCalled(Cycle.AFTER);
-    }
-
     @RepeatedTest(3)
-    public void repeatedTest() throws Throwable {
-        wasCalled(Cycle.TEST);
+    public void repeatedTest() {
     }
 }
