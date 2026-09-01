@@ -24,6 +24,7 @@ import static org.mockito.Mockito.verify;
 import java.util.Map;
 
 import org.jboss.arquillian.junit5.IdentifiedTestException;
+import org.jboss.arquillian.junit5.container.fixtures.ClassWithArquillianExtensionAndParameterizedTest;
 import org.jboss.arquillian.junit5.extension.RunModeEvent;
 import org.jboss.arquillian.test.spi.TestMethodExecutor;
 import org.jboss.arquillian.test.spi.TestResult;

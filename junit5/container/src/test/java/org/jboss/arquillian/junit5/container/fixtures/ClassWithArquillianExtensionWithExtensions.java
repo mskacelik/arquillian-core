@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.arquillian.junit5.container;
+package org.jboss.arquillian.junit5.container.fixtures;
 
 import static org.jboss.arquillian.junit5.container.JUnitTestBaseClass.Cycle;
 import static org.jboss.arquillian.junit5.container.JUnitTestBaseClass.wasCalled;
